@@ -1,0 +1,4 @@
+graphics/cairo - change history
+
+== 1.0.0 ==
+ * initial import
