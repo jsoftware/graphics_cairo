@@ -957,14 +957,32 @@ glcr_setpen=: glcr_pen @ ((1 0 [ glcr_rgb) :((2 {. [) glcr_rgb))
 glcr_text=: 3 : 0 "1
 assert. 0~:cairocs,cairocr
 cairo_cairocolor cairotextrgb
+te=. (5*8)$(2.2-2.2)
+cairo_font_extents cairocr; te
+of=. - 0 , <. {.te
+
 if. 0=cairofontangle do.
-  cairo_move_to cairocr ; <"0 cairotextxy
+  cairo_move_to cairocr ; <"0 of + cairotextxy
   cairo_show_text cairocr; y
+  if. cairounderline do.
+    off=. <. -/ 2 0{te
+    'w h'=. glcr_qextent y
+    cairo_move_to cairocr ; <"0 off + cairotextxy
+    cairo_line_to cairocr ; <"0 (w,0) + off + cairotextxy
+    cairo_stroke cairocr
+  end.
 else.
   cairo_save cairocr
-  cairo_move_to cairocr ; <"0 cairotextxy
+  cairo_move_to cairocr ; <"0 of + cairotextxy
   cairo_rotate cairocr ; - rfd cairofontangle%10
   cairo_show_text cairocr; y
+  if. cairounderline do.
+    off=. <. -/ 2 0{te
+    'w h'=. glcr_qextent y
+    cairo_move_to cairocr ; <"0 off + cairotextxy
+    cairo_line_to cairocr ; <"0 (w,0) + off + cairotextxy
+    cairo_stroke cairocr
+  end.
   cairo_restore cairocr
 end.
 if. cairounderline do.
