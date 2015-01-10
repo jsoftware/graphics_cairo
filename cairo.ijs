@@ -829,10 +829,12 @@ cairo_fill cairocr
 )
 glcr_pixels=: 3 : 0 "1
 assert. 0~:cairocs,cairocr
+if. 4>#y do. 1 return. end.
 'a b'=. <. 2{.y
 'w h1'=. <. 2{.2}.y
 h=. |h1
 d=. <. 4}.y
+if. (#d)~:w*h do. 1 return. end.
 if. h1<0 do. d=. ,|.(h,w)$d end.
 d=. fliprgb^:(-.RGBSEQ_j_) d
 
