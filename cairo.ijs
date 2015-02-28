@@ -608,37 +608,42 @@ glnoerasebkgnd_n=: 2071
 glfont2_n=: 2312
 glfontangle_n=: 2342
 glrgba_n=: 2343
-glcr_init=: 3 : 0
-assert. 0=cairocs,cairocr
+chkgl2=: 13!:8@(3"_)^:(0&~:)
+
+glcr_sel=: 0:
+glcr_sel2=: 0:
+glcr_setlocale=: 0:
+glcr_init=: chkgl2 @: (3 : 0)
+if. 0 e. 0=cairocs,cairocr do. 1 return. end.
 cs=. cairo_image_surface_create <"0 CAIRO_FORMAT_ARGB32, y
-assert. 0~:cs
+if. 0=cs do. 1 return. end.
 cr=. cairo_create cs
-assert. 0~:cr
+if. 0=cr do. 1 [ cairo_surface_destroy cs return. end.
 cairocs=: cs [ cairocr=: cr [ cairowh=: y
 0
 )
-glcr_free=: 3 : 0
+glcr_free=: chkgl2 @: (3 : 0)
 if. 0=cairocs do. 0 return. end.
 if. cairocr do. cairo_destroy cairocr end.
 cairo_surface_destroy cairocs
 cairocs=: cairocr=: 0
 0
 )
-glcr_savefile=: 3 : 0
-assert. 0~:cairocs,cairocr
+glcr_savefile=: chkgl2 @: (3 : 0)
+if. 0 e. 0~:cairocs,cairocr do. 1 return. end.
 cairo_surface_write_to_png cairocs; ,y
 )
 NB.! should not be same as pie - should not use brush
-glcr_arc=: 3 : 0 "1
-assert. 0~:cairocs,cairocr
+glcr_arc=: chkgl2 @: (3 : 0) "1
+if. 0 e. 0~:cairocs,cairocr do. 1 return. end.
 t=. cairobrushnull
 cairobrushnull=: 1
 glcr_arcx cairo_arcisi y
 cairobrushnull=: t
 0
 )
-glcr_arcx=: 3 : 0 "1
-assert. 0~:cairocs,cairocr
+glcr_arcx=: chkgl2 @: (3 : 0) "1
+if. 0 e. 0~:cairocs,cairocr do. 1 return. end.
 cairo_new_sub_path cairocr
 if. -.cairobrushnull do.
   cairo_move_to cairocr ; <"0] 0 1{2}.y
@@ -658,16 +663,16 @@ cairo_restore cairocr
 cairo_stroke cairocr
 0
 )
-glcr_brush=: 3 : 0 "1
+glcr_brush=: chkgl2 @: (3 : 0) "1
 cairobrushrgb=: cairorgb
 cairobrushnull=: 0
 0
 )
-glcr_brushnull=: 3 : 0 "1
+glcr_brushnull=: chkgl2 @: (3 : 0) "1
 cairobrushnull=: 1
 0
 )
-glcr_clear=: 3 : 0 "1
+glcr_clear=: chkgl2 @: (3 : 0) "1
 glcr_clipreset''
 glcr_windoworg - cairoorgx, cairoorgy
 cairoorgx=: cairoorgy=: 0
@@ -684,25 +689,25 @@ glcr_fontangle 0
 glcr_textxy 0 0
 0
 )
-glcr_clip=: 3 : 0 "1
-assert. 0~:cairocs,cairocr
+glcr_clip=: chkgl2 @: (3 : 0) "1
+if. 0 e. 0~:cairocs,cairocr do. 1 return. end.
 cairoclipped=: 1
 cairo_save cairocr
 cairo_rectangle cairocr ; <"0 y
 cairo_clip cairocr
 0
 )
-glcr_clipreset=: 3 : 0 "1
-assert. 0~:cairocs,cairocr
+glcr_clipreset=: chkgl2 @: (3 : 0) "1
+if. 0 e. 0~:cairocs,cairocr do. 1 return. end.
 if. cairoclipped do.
   cairo_restore cairocr
   cairoclipped=: 0
 end.
 0
 )
-glcr_cmds=: 3 : 0"1
+glcr_cmds=: chkgl2 @: (3 : 0) "1
 if. 0=#y do. 0 return. end.
-assert. 0~:cairocs,cairocr
+if. 0 e. 0~:cairocs,cairocr do. 1 return. end.
 p=. 0
 rc=. 0
 while. p<#y do.
@@ -747,17 +752,26 @@ while. p<#y do.
 end.
 0
 )
-glcr_ellipse=: 3 : 0"1
-assert. 0~:cairocs,cairocr
+glcr_ellipse=: chkgl2 @: (3 : 0) "1
+if. 0 e. 0~:cairocs,cairocr do. 1 return. end.
 t=. cairobrushnull
 cairobrushnull=: 0
 glcr_arcx (0, 2p1),~ _2}.cairo_arcisi y,4#0
 cairobrushnull=: t
 0
 )
-glcr_font=: 3 : 0 "1
-assert. 0~:cairocs,cairocr
-if. 0=#y=. ,y do. return. end.
+glcr_fill=: chkgl2 @: (3 : 0) "1
+if. 0 e. 0~:cairocs,cairocr do. 1 return. end.
+if. 4~:#y do. 1 return. end.
+cairo_cairocolor ({:y) setalpha 256 256 256#.}:y
+cairo_rectangle cairocr ; <"0 [ 0 0,cairowh
+cairo_fill_preserve cairocr
+cairo_stroke cairocr
+0
+)
+glcr_font=: chkgl2 @: (3 : 0) "1
+if. 0 e. 0~:cairocs,cairocr do. 1 return. end.
+if. 0=#y=. ,y do. 1 return. end.
 'face size style degree'=. parseFontSpec y
 'Bold Italic Underline Strikeout'=. 4{. |. #: style
 cairofontangle=: <.degree*10
@@ -768,8 +782,8 @@ cairo_set_font_size cairocr; size
 )
 
 glcr_fontextent=: glcr_font
-glcr_font2=: 3 : 0 "1
-assert. 0~:cairocs,cairocr
+glcr_font2=: chkgl2 @: (3 : 0) "1
+if. 0 e. 0~:cairocs,cairocr do. 1 return. end.
 'size10 style degree10'=. 3{.y
 face=. a.{~3}.y
 'Bold Italic Underline Strikeout'=. 4{. |. #: style
@@ -781,21 +795,24 @@ cairo_select_font_face cairocr ; face ; (Italic{CAIRO_FONT_SLANT_NORMAL,CAIRO_FO
 cairo_set_font_size cairocr; size
 0
 )
-glcr_fontangle=: 3 : 0 "1
+glcr_fontangle=: chkgl2 @: (3 : 0) "1
 cairofontangle=: <.y
 0
 )
-glcr_rgb=: 3 : 0 "1
+glcr_rgb=: chkgl2 @: (3 : 0) "1
+if. 3~:#y do. 1 return. end.
 cairorgb=: setalpha 256 256 256#.y
 0
 )
-glcr_rgba=: 3 : 0 "1
+glcr_rgba=: chkgl2 @: (3 : 0) "1
+if. 4~:#y do. 1 return. end.
 cairorgb=: ({:y) setalpha 256 256 256#.}:y
 0
 )
-glcr_lines=: 3 : 0 "1
+glcr_lines=: chkgl2 @: (3 : 0) "1
 if. *./ 0=y do. 0 return. end.
-assert. 0~:cairocs,cairocr
+if. 0 e. 0~:cairocs,cairocr do. 1 return. end.
+if. 2|#y do. 1 return. end.
 cairo_cairocolor cairopenrgb
 c=. <.-:#y
 if. 0=c do. 0 return. end.
@@ -806,20 +823,21 @@ end.
 cairo_stroke cairocr
 0
 )
-glcr_pen=: 3 : 0 "1
-assert. 0~:cairocs,cairocr
+glcr_pen=: chkgl2 @: (3 : 0) "1
+if. 0 e. 0~:cairocs,cairocr do. 1 return. end.
 cairopenrgb=: cairorgb
 penwidth=. 0.5>.{.y
 penstyle=. {:y NB.! use it
 cairo_set_line_width cairocr ; (1.1-1.1)+penwidth
 0
 )
-glcr_pie=: 3 : 0 "1
+glcr_pie=: chkgl2 @: (3 : 0) "1
 glcr_arcx cairo_arcisi y
 0
 )
-glcr_pixel=: 3 : 0 "1
-assert. 0~:cairocs,cairocr
+glcr_pixel=: chkgl2 @: (3 : 0) "1
+if. 0 e. 0~:cairocs,cairocr do. 1 return. end.
+if. 2|#y do. 1 return. end.
 cairo_cairocolor cairorgb
 for_p. <. (_2[\ y),("1) 1 1 do.
   cairo_rectangle cairocr ; <"0 p
@@ -827,9 +845,10 @@ end.
 cairo_fill cairocr
 0
 )
-glcr_pixels=: 3 : 0 "1
-assert. 0~:cairocs,cairocr
+glcr_pixels=: chkgl2 @: (3 : 0) "1
+if. 0 e. 0~:cairocs,cairocr do. 1 return. end.
 if. 4>#y do. 1 return. end.
+if. (|*/2 3{y)~:_4+#y do. 1 return. end.
 'a b'=. <. 2{.y
 'w h1'=. <. 2{.2}.y
 h=. |h1
@@ -852,8 +871,8 @@ if. surface do.
 end.
 0
 )
-glcr_pixelsx=: 3 : 0 "1
-assert. 0~:cairocs,cairocr
+glcr_pixelsx=: chkgl2 @: (3 : 0) "1
+if. 0 e. 0~:cairocs,cairocr do. 1 return. end.
 'a b'=. <. 2{.y
 'w h1'=. <. 2{.2}.y
 da=. <. {:y
@@ -876,11 +895,12 @@ if. surface do.
 end.
 0
 )
-glcr_polygon=: 3 : 0 "1
+glcr_polygon=: chkgl2 @: (3 : 0) "1
 if. *./ 0=y do. 0 return. end.
 c=. <.-:#y
 if. 0=c do. 0 return. end.
-assert. 0~:cairocs,cairocr
+if. 0 e. 0~:cairocs,cairocr do. 1 return. end.
+if. 2|#y do. 1 return. end.
 if. -.cairobrushnull do.
   cairo_cairocolor cairobrushrgb
   cairo_move_to cairocr ; <"0 (0 1){y
@@ -902,8 +922,8 @@ else.
 end.
 0
 )
-glcr_qpixels=: 3 : 0 "1
-assert. 0~:cairocs,cairocr
+glcr_qpixels=: 3 : 0
+if. 0 e. 0~:cairocs,cairocr do. chkgl2 1 return. end.
 'a b'=. <. 2{.y
 'w h'=. <. 2{.2}.y
 
@@ -919,8 +939,8 @@ cairo_clip cr
 cairo_paint cr
 
 ad=. cairo_image_surface_get_data surface
-assert. 0~: ad
-assert. (4*w)= cairo_image_surface_get_stride surface
+if. 0=ad do. chkgl2 1 [ cairo_surface_destroy surface [ cairo_destroy cr return. end.
+if. (4*w)~: cairo_image_surface_get_stride surface do. chkgl2 1 [ cairo_surface_destroy surface [ cairo_destroy cr return. end.
 
 if. IF64 do.
   r=. _2 ic memr ad,0,(w*h*4),JCHAR
@@ -932,11 +952,12 @@ cairo_surface_destroy surface
 
 r=. fliprgb^:(-.RGBSEQ_j_) r
 )
-glcr_qwh=: 3 : 0"1
+glcr_qwh=: 3 : 0
 cairowh
 )
-glcr_rect=: 3 : 0 "1
-assert. 0~:cairocs,cairocr
+glcr_rect=: chkgl2 @: (3 : 0) "1
+if. 0 e. 0~:cairocs,cairocr do. 1 return. end.
+if. 4|#y do. 1 return. end.
 if. -.cairobrushnull do.
   for_p. <. _4[\ y do.
     cairo_cairocolor cairobrushrgb
@@ -955,9 +976,9 @@ end.
 0
 )
 glcr_setbrush=: glcr_brush @ glcr_rgb
-glcr_setpen=: glcr_pen @ ((1 0 [ glcr_rgb) :((2 {. [) glcr_rgb))
-glcr_text=: 3 : 0 "1
-assert. 0~:cairocs,cairocr
+glcr_setpen=: glcr_pen @ ((1 1 [ glcr_rgb) :((2 {. [) glcr_rgb))
+glcr_text=: chkgl2 @: (3 : 0) "1
+if. 0 e. 0~:cairocs,cairocr do. 1 return. end.
 cairo_cairocolor cairotextrgb
 te=. (5*8)$(2.2-2.2)
 cairo_font_extents cairocr; te
@@ -991,26 +1012,26 @@ if. cairounderline do.
 end.
 0
 )
-glcr_textcolor=: 3 : 0 "1
+glcr_textcolor=: chkgl2 @: (3 : 0) "1
 cairotextrgb=: cairorgb
 0
 )
-glcr_textxy=: 3 : 0 "1
+glcr_textxy=: chkgl2 @: (3 : 0) "1
 cairotextxy=: <.y
 0
 )
-glcr_qextent=: 3 : 0 "1
+glcr_qextent=: 3 : 0
 te=. (6*8)$(2.2-2.2)
-assert. 0~:cairocs,cairocr
+if. 0 e. 0~:cairocs,cairocr do. chkgl2 1 return. end.
 cairo_text_extents cairocr; y; te
 <. 2 3{te
 )
-glcr_qextentw=: 3 : 0 "1
-assert. 0~:cairocs,cairocr
+glcr_qextentw=: 3 : 0
+if. 0 e. 0~:cairocs,cairocr do. chkgl2 1 return. end.
 {."1>glcr_qextent each<;._2 y,LF#~LF~:{:y
 )
-glcr_windoworg=: 3 : 0 "1
-assert. 0~:cairocs,cairocr
+glcr_windoworg=: chkgl2 @: (3 : 0) "1
+if. 0 e. 0~:cairocs,cairocr do. 1 return. end.
 cairoorgx=: cairoorgx + <.{.y
 cairoorgy=: cairoorgy + <.{:y
 cairo_translate cairocr ; <"0 y
@@ -1137,6 +1158,9 @@ glqwh_jglcr_=: glcr_qwh_jglcr_
 glrect_jglcr_=: glcr_rect_jglcr_
 glrgb_jglcr_=: glcr_rgb_jglcr_
 glrgba_jglcr_=: glcr_rgba_jglcr_
+glsel_jglcr_=: glcr_sel_jglcr_
+glsel2_jglcr_=: glcr_sel2_jglcr_
+glsetlocale_jglcr_=: glcr_setlocale_jglcr_
 gltext_jglcr_=: glcr_text_jglcr_
 gltextcolor_jglcr_=: glcr_textcolor_jglcr_
 gltextxy_jglcr_=: glcr_textxy_jglcr_

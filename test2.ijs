@@ -53,8 +53,8 @@ glpen 1 1
 glbrush''
 glpolygon 250 200 300 300 400 100 300 150
 
-RED=. RGBSEQ_j_{16bff,16bff0000
-BLUE=. RGBSEQ_j_{16bff0000,16bff
+RED=. setalpha RGBSEQ_j_{16bff,16bff0000
+BLUE=. setalpha RGBSEQ_j_{16bff0000,16bff
 
 NB. qpixels pixels
 data=: glqpixels 100 100 40 40
@@ -65,7 +65,7 @@ data=. ,((20*40)$RED),(20*40)$BLUE
 glpixelsx 160 250 20 80,p=. 15!:14 <'data'
 
 NB. lines
-glrgb 255 0 255
+glrgba 255 0 255 100
 glpen 1 1
 gllines ,(,.250+50*1 o. *&0.1) 10+i.400
 glrgb 0 128 128
