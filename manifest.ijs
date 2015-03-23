@@ -6,7 +6,7 @@ DESCRIPTION=: 0 : 0
 cairographics interface and gl2 emulation
 )
 
-VERSION=: '1.0.4'
+VERSION=: '1.0.5'
 
 RELEASE=: 'j803 j804'
 
