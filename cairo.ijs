@@ -664,7 +664,7 @@ elseif. 'Android'-:UNAME do.
 end.
 EMPTY
 )
-chkgl2=: 13!:8@(3"_)^:(0&~:)
+chkgl2=: 13!:8@3:^:(0&~:)
 
 glcr_sel=: 0:
 glcr_sel2=: 0:
