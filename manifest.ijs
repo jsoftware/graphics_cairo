@@ -6,9 +6,9 @@ DESCRIPTION=: 0 : 0
 cairographics interface and gl2 emulation
 )
 
-VERSION=: '1.0.5'
+VERSION=: '1.0.6'
 
-RELEASE=: 'j803 j804'
+RELEASE=: 'j804'
 
 FILES=: 0 : 0
 history.txt

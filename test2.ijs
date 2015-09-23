@@ -79,7 +79,7 @@ glfont 'sans 10'
 smoutput 'sans 10: ',":glqextent 'hello'
 glsavefile jpath '~temp/testall.png'
 glfree''
-browse_j_ jpath '~temp/testall.png'
+viewimage_j_ jpath '~temp/testall.png'
 )
 
 NB. =========================================================
@@ -110,7 +110,7 @@ NB. lines
 gllines ,(,.200+50*1 o. *&0.1) 10+i.400
 glsavefile jpath '~temp/testsimple.png'
 glfree''
-browse_j_ jpath '~temp/testsimple.png'
+viewimage_j_ jpath '~temp/testsimple.png'
 )
 
 NB. =========================================================

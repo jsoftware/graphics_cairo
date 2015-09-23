@@ -27,7 +27,7 @@ cs=. cairo_image_surface_create CAIRO_FORMAT_ARGB32; SIZEX; SIZEY
 paint cs
 cairo_surface_write_to_png cs; jpath '~temp/test1.png'
 cairo_surface_destroy cs
-browse_j_ jpath '~temp/test1.png'
+viewimage_j_ jpath '~temp/test1.png'
 ''
 )
 
