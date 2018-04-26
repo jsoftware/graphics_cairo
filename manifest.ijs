@@ -8,7 +8,9 @@ cairographics interface and gl2 emulation
 
 VERSION=: '1.0.9'
 
-RELEASE=: 'j804 j805 j806 j807'
+RELEASE=: ''
+
+FOLDER=: 'graphics/cairo'
 
 FILES=: 0 : 0
 history.txt

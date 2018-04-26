@@ -1,0 +1,10 @@
+NB. project: Public/graphics/cairo/source/glcr
+NB.
+NB. defines list of source files.
+NB. path defaults to project directory.
+
+init.ijs
+glconst.ijs
+cairo.ijs
+util.ijs
+gl2.ijs

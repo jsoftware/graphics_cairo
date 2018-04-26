@@ -1,0 +1,51 @@
+NB. gl2 cover names
+
+glarc_jglcr_=: glcr_arc_jglcr_
+glbrush_jglcr_=: glcr_brush_jglcr_
+glbrushnull_jglcr_=: glcr_brushnull_jglcr_
+glcapture_jglcr_=: glcr_capture_jglcr_
+glcaret_jglcr_=: glcr_caret_jglcr_
+glclear_jglcr_=: glcr_clear_jglcr_
+glclear2_jglcr_=: glcr_clear2_jglcr_
+glclip_jglcr_=: glcr_clip_jglcr_
+glclipreset_jglcr_=: glcr_clipreset_jglcr_
+glcmds_jglcr_=: glcr_cmds_jglcr_
+glcursor_jglcr_=: glcr_cursor_jglcr_
+glellipse_jglcr_=: glcr_ellipse_jglcr_
+glfill_jglcr_=: glcr_fill_jglcr_
+glfont_jglcr_=: glcr_font_jglcr_
+glfont2_jglcr_=: glcr_font2_jglcr_
+glfontangle_jglcr_=: glcr_fontangle_jglcr_
+glfontextent_jglcr_=: glcr_fontextent_jglcr_
+gllines_jglcr_=: glcr_lines_jglcr_
+glnodblbuf_jglcr_=: glcr_nodblbuf_jglcr_
+glpaint_jglcr_=: glcr_paint_jglcr_
+glpaintx_jglcr_=: glcr_paintx_jglcr_
+glpen_jglcr_=: glcr_pen_jglcr_
+glpie_jglcr_=: glcr_pie_jglcr_
+glpixel_jglcr_=: glcr_pixel_jglcr_
+glpixels_jglcr_=: glcr_pixels_jglcr_
+glpixelsx_jglcr_=: glcr_pixelsx_jglcr_
+glpolygon_jglcr_=: glcr_polygon_jglcr_
+glqextent_jglcr_=: glcr_qextent_jglcr_
+glqextentw_jglcr_=: glcr_qextentw_jglcr_
+glqhandles_jglcr_=: glcr_qhandles_jglcr_
+glqpixels_jglcr_=: glcr_qpixels_jglcr_
+glqpixelm_jglcr_=: glcr_qpixelm_jglcr_
+glqtextmetrics_jglcr_=: glcr_qtextmetrics_jglcr_
+glqwh_jglcr_=: glcr_qwh_jglcr_
+glrect_jglcr_=: glcr_rect_jglcr_
+glrgb_jglcr_=: glcr_rgb_jglcr_
+glrgba_jglcr_=: glcr_rgba_jglcr_
+glsel_jglcr_=: glcr_sel_jglcr_
+glsel2_jglcr_=: glcr_sel2_jglcr_
+glsetlocale_jglcr_=: glcr_setlocale_jglcr_
+gltext_jglcr_=: glcr_text_jglcr_
+gltextcolor_jglcr_=: glcr_textcolor_jglcr_
+gltextxy_jglcr_=: glcr_textxy_jglcr_
+glwindoworg_jglcr_=: glcr_windoworg_jglcr_
+
+glinit_jglcr_=: glcr_init_jglcr_
+glfree_jglcr_=: glcr_free_jglcr_
+glsavefile_jglcr_=: glcr_savefile_jglcr_
+

@@ -1,0 +1,9 @@
+NB. project: graphic/cairo/base
+NB.
+NB. defines list of source files.
+NB. path defaults to project directory.
+
+init.ijs
+cd.ijs
+enum.ijs
+util.ijs
