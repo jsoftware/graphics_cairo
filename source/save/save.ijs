@@ -8,7 +8,7 @@ mkdir_j_ jpath '~addons/graphics/cairo'
 
 NB. =========================================================
 f=. 3 : 0
-load '~Addons/graphics/cairo/source/source/',y,'/build.ijs'
+load '~Addons/graphics/cairo/source/',y,'/build.ijs'
 )
 
 Source=: <;._2 (0 : 0)
