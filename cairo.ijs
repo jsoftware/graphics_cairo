@@ -221,6 +221,7 @@ cairo_surface_set_device_offset > n x d d
 cairo_surface_get_device_offset > n x *d *d
 cairo_surface_set_fallback_resolution > n x d d
 cairo_surface_get_fallback_resolution > n x *d *d
+cairo_surface_set_device_scale > n x d d
 cairo_surface_copy_page > n x
 cairo_surface_show_page > n x
 cairo_surface_has_show_text_glyphs > i x
