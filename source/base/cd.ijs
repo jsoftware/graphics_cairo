@@ -56,10 +56,10 @@ cairo_rotate > n x d
 cairo_transform > n x x
 cairo_set_matrix > n x x
 cairo_identity_matrix > n x
-cairo_user_to_device > n x *d *d
-cairo_user_to_device_distance > n x *d *d
-cairo_device_to_user > n x *d *d
-cairo_device_to_user_distance > n x *d *d
+cairo_user_to_device   n x *d *d
+cairo_user_to_device_distance   n x *d *d
+cairo_device_to_user   n x *d *d
+cairo_device_to_user_distance   n x *d *d
 cairo_new_path > n x
 cairo_move_to > n x d d
 cairo_new_sub_path > n x
@@ -72,7 +72,7 @@ cairo_rel_line_to > n x d d
 cairo_rel_curve_to > n x d d d d d d
 cairo_rectangle > n x d d d d
 cairo_close_path > n x
-cairo_path_extents > n x *d *d *d *d
+cairo_path_extents   n x *d *d *d *d
 cairo_paint > n x
 cairo_paint_with_alpha > n x d
 cairo_mask > n x x
@@ -85,12 +85,12 @@ cairo_copy_page > n x
 cairo_show_page > n x
 cairo_in_stroke > i x d d
 cairo_in_fill > i x d d
-cairo_stroke_extents > n x *d *d *d *d
-cairo_fill_extents > n x *d *d *d *d
+cairo_stroke_extents   n x *d *d *d *d
+cairo_fill_extents   n x *d *d *d *d
 cairo_reset_clip > n x
 cairo_clip > n x
 cairo_clip_preserve > n x
-cairo_clip_extents > n x *d *d *d *d
+cairo_clip_extents   n x *d *d *d *d
 cairo_copy_clip_rectangle_list > x x
 cairo_rectangle_list_destroy > n x
 cairo_glyph_allocate > x i
@@ -127,9 +127,9 @@ cairo_show_glyphs > n x x i
 cairo_show_text_glyphs > n x *c i x i x i i
 cairo_text_path > n x *c
 cairo_glyph_path > n x x i
-cairo_text_extents > n x *c *d
-cairo_glyph_extents > n x x i *d
-cairo_font_extents > n x *d
+cairo_text_extents   n x *c *d
+cairo_glyph_extents   n x x i *d
+cairo_font_extents   n x *d
 cairo_font_face_reference > x x
 cairo_font_face_destroy > n x
 cairo_font_face_get_reference_count > i x
@@ -145,9 +145,9 @@ cairo_scaled_font_status > i x
 cairo_scaled_font_get_type > i x
 cairo_scaled_font_get_user_data > x x x
 cairo_scaled_font_set_user_data > i x x * x
-cairo_scaled_font_extents > n x *d
-cairo_scaled_font_text_extents > n x *c *d
-cairo_scaled_font_glyph_extents > n x x i *d
+cairo_scaled_font_extents   n x *d
+cairo_scaled_font_text_extents   n x *c *d
+cairo_scaled_font_glyph_extents   n x x i *d
 cairo_scaled_font_text_to_glyphs > i x d d *c i *x i * *x i * x
 cairo_scaled_font_get_font_face > x x
 cairo_scaled_font_get_font_matrix > n x x
@@ -163,23 +163,23 @@ cairo_user_font_face_set_init_func > n x x
 cairo_user_font_face_set_render_glyph_func > n x x
 cairo_user_font_face_set_text_to_glyphs_func > n x x
 cairo_user_font_face_set_unicode_to_glyph_func > n x x
-cairo_user_font_face_get_init_func >x x
-cairo_user_font_face_get_render_glyph_func >x x
-cairo_user_font_face_get_text_to_glyphs_func >x x
-cairo_user_font_face_get_unicode_to_glyph_func >x x
+cairo_user_font_face_get_init_func > x x
+cairo_user_font_face_get_render_glyph_func > x x
+cairo_user_font_face_get_text_to_glyphs_func > x x
+cairo_user_font_face_get_unicode_to_glyph_func > x x
 cairo_get_operator > i x
 cairo_get_source > x x
 cairo_get_tolerance > d x
 cairo_get_antialias > i x
 cairo_has_current_point > i x
-cairo_get_current_point > n x *d *d
+cairo_get_current_point   n x *d *d
 cairo_get_fill_rule > i x
 cairo_get_line_width > d x
 cairo_get_line_cap > i x
 cairo_get_line_join > i x
 cairo_get_miter_limit > d x
 cairo_get_dash_count > i x
-cairo_get_dash > n x *d *d
+cairo_get_dash   n x *d *d
 cairo_get_matrix > n x x
 cairo_get_target > x x
 cairo_get_group_target > x x
@@ -206,9 +206,10 @@ cairo_surface_flush > n x
 cairo_surface_mark_dirty > n x
 cairo_surface_mark_dirty_rectangle > n x i i i i
 cairo_surface_set_device_offset > n x d d
-cairo_surface_get_device_offset > n x *d *d
+cairo_surface_get_device_offset   n x *d *d
 cairo_surface_set_fallback_resolution > n x d d
-cairo_surface_get_fallback_resolution > n x *d *d
+cairo_surface_get_fallback_resolution   n x *d *d
+cairo_surface_set_device_scale > n x d d
 cairo_surface_copy_page > n x
 cairo_surface_show_page > n x
 cairo_surface_has_show_text_glyphs > i x
@@ -242,12 +243,12 @@ cairo_pattern_set_extend > n x i
 cairo_pattern_get_extend > i x
 cairo_pattern_set_filter > n x i
 cairo_pattern_get_filter > i x
-cairo_pattern_get_rgba > i x *d *d *d *d
+cairo_pattern_get_rgba   i x *d *d *d *d
 cairo_pattern_get_surface > i x *x
-cairo_pattern_get_color_stop_rgba > i x i *d *d *d *d *d
+cairo_pattern_get_color_stop_rgba   i x i *d *d *d *d *d
 cairo_pattern_get_color_stop_count > i x i *
-cairo_pattern_get_linear_points > i x *d *d *d *d
-cairo_pattern_get_radial_circles > i x *d *d *d *d *d *d
+cairo_pattern_get_linear_points   i x *d *d *d *d
+cairo_pattern_get_radial_circles   i x *d *d *d *d *d *d
 cairo_matrix_init > n x d d d d d d
 cairo_matrix_init_identity > n x
 cairo_matrix_init_translate > n x d d
@@ -258,8 +259,8 @@ cairo_matrix_scale > n x d d
 cairo_matrix_rotate > n x d
 cairo_matrix_invert > i x
 cairo_matrix_multiply > n x x x
-cairo_matrix_transform_distance > n x *d *d
-cairo_matrix_transform_point > n x *d *d
+cairo_matrix_transform_distance   n x *d *d
+cairo_matrix_transform_point   n x *d *d
 cairo_debug_reset_static_data > n
 )
 
