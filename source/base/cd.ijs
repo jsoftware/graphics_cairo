@@ -148,7 +148,7 @@ cairo_scaled_font_set_user_data > i x x * x
 cairo_scaled_font_extents   n x *d
 cairo_scaled_font_text_extents   n x *c *d
 cairo_scaled_font_glyph_extents   n x x i *d
-cairo_scaled_font_text_to_glyphs > i x d d *c i *x i * *x i * x
+cairo_scaled_font_text_to_glyphs   i x d d *c i *x i * *x i * x
 cairo_scaled_font_get_font_face > x x
 cairo_scaled_font_get_font_matrix > n x x
 cairo_scaled_font_get_ctm > n x x
@@ -244,9 +244,9 @@ cairo_pattern_get_extend > i x
 cairo_pattern_set_filter > n x i
 cairo_pattern_get_filter > i x
 cairo_pattern_get_rgba   i x *d *d *d *d
-cairo_pattern_get_surface > i x *x
+cairo_pattern_get_surface   i x *x
 cairo_pattern_get_color_stop_rgba   i x i *d *d *d *d *d
-cairo_pattern_get_color_stop_count > i x i *
+cairo_pattern_get_color_stop_count   i x i *
 cairo_pattern_get_linear_points   i x *d *d *d *d
 cairo_pattern_get_radial_circles   i x *d *d *d *d *d *d
 cairo_matrix_init > n x d d d d d d
