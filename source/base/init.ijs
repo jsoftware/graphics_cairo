@@ -5,6 +5,10 @@ coclass 'jcairo'
 3 : 0''
 if. UNAME-:'Linux' do.
   libcairo=: 'libcairo.so.2'
+elseif. UNAME-:'FreeBSD' do.
+  libcairo=: 'libcairo.so.2'
+elseif. UNAME-:'OpenBSD' do.
+  libcairo=: 'libcairo.so'
 elseif. UNAME-:'Android' do.
   libcairo=: 'libcairo.so'       NB. not yet supported
 elseif. UNAME-:'Darwin' do.
